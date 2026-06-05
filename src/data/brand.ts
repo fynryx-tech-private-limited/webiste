@@ -1,0 +1,2 @@
+export const BRAND_NAME = 'FYNRYX'
+export const BRAND_TAGLINE = 'DESIGN. INNOVATE. TRANSFORM.'
