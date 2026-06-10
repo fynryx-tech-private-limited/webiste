@@ -46,11 +46,11 @@ export function HeroCarousel() {
   const titleWordCount = slide.title.split(' ').length
 
   return (
-    <section className="relative min-h-[520px] overflow-hidden bg-primary-950 text-white lg:min-h-[600px]">
+    <section className="relative h-[520px] overflow-hidden bg-primary-950 text-white sm:h-[580px] lg:h-[660px]">
       {heroSlides.map((item, index) => (
         <div
           key={item.id}
-          className={`absolute inset-0 scale-105 bg-cover bg-center blur-[2px] transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
             index === activeIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ backgroundImage: `url(${item.background})` }}
@@ -59,6 +59,9 @@ export function HeroCarousel() {
       ))}
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-black/10" />
 
+      {/* Bottom fade — very subtle blend into section below */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none bg-gradient-to-t from-white/10 to-transparent z-10" />
+
       {/* Pixel-edge accent inspired by logo swoosh */}
       <div className="absolute right-0 top-0 h-full w-1/3 opacity-10">
         <div className="absolute right-12 top-1/4 h-32 w-2 bg-primary-400" />
@@ -66,7 +69,7 @@ export function HeroCarousel() {
         <div className="absolute right-20 top-2/5 h-16 w-2 bg-primary-200" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[520px] max-w-7xl items-center px-4 py-20 sm:px-6 lg:min-h-[600px] lg:px-8">
+      <div className="relative mx-auto flex h-[520px] max-w-7xl items-center px-4 py-20 sm:h-[580px] sm:px-6 lg:h-[660px] lg:px-8">
         <div className="relative max-w-2xl">
           <div
             className="pointer-events-none absolute inset-0 -z-10 rounded-md"

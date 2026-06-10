@@ -1,11 +1,13 @@
 import { stats } from '../../data/stats'
 import { StatCounter } from '../ui/StatCounter'
 
+
+
 export function StatsSection() {
   return (
-    <section className="bg-primary-900 py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="bg-primary-900 pt-24 pb-20">
+      <div className="w-full px-10 md:px-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat) => (
             <StatCounter key={stat.id} stat={stat} />
           ))}

@@ -12,8 +12,8 @@ export function ProjectsPreview() {
           description="We deliver innovative IT solutions across diverse sectors, enhancing efficiency and driving success through custom technology implementations."
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
         <div className="mt-10 text-center">

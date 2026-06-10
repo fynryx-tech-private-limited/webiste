@@ -14,7 +14,7 @@ export function Logo({ className = '', onDark = false }: LogoProps) {
         }`}
       >
         <img
-          src="/logo.png"
+          src="/logo_backup.png"
           alt="Fynryx — Design   Innovate   Transform."
           className="h-9 w-auto sm:h-10"
         />

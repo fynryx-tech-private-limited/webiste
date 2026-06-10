@@ -24,6 +24,7 @@ export interface Service {
   icon: string
   fullDescription?: string
   features?: string[]
+  technologies?: string[]
   image?: string
 }
 

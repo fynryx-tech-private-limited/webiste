@@ -5,7 +5,7 @@ import { PageHero } from '../components/ui/PageHero'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { services } from '../data/services'
 import { Button } from '../components/ui/Button'
-import { ServiceListCard } from '../components/ui/ServiceListCard'
+import { InteractiveServiceExplorer } from '../components/ui/InteractiveServiceExplorer'
 
 const iconMap: Record<string, React.ReactNode> = {
   globe: (
@@ -119,123 +119,12 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* Service Cards */}
-      <section className="border-t border-primary-100 py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-primary-900 sm:text-4xl">
-            Our Services
-          </h2>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
-              <ServiceListCard key={service.id} service={service} variant="page" />
-            ))}
-          </div>
-        </div>
+      {/* Interactive Service Explorer */}
+      <section className="border-t border-primary-100 bg-slate-50 py-16">
+        <InteractiveServiceExplorer services={services} />
       </section>
 
-      {/* Detailed Services Section */}
-      <section className="bg-slate-50 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                data-service-id={service.id}
-                className="overflow-hidden rounded-lg border border-primary-200 bg-white transition-all duration-300"
-              >
-                {/* Service Header - Always Visible */}
-                <button
-                  onClick={() => toggleService(service.id)}
-                  className="w-full px-6 py-6 text-left hover:bg-primary-50 transition-colors"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-lg bg-primary-100 p-3 text-primary-600">
-                        {iconMap[service.icon]}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-primary-900">{service.title}</h3>
-                        <p className="mt-1 text-sm text-slate-600">{service.description}</p>
-                      </div>
-                    </div>
-                    <div className="flex-shrink-0 text-primary-600">
-                      {expandedService === service.id ? (
-                        <ChevronUp className="h-6 w-6" />
-                      ) : (
-                        <ChevronDown className="h-6 w-6" />
-                      )}
-                    </div>
-                  </div>
-                </button>
 
-                {/* Service Details - Expanded Content */}
-                {expandedService === service.id && (
-                  <div className="border-t border-primary-200 px-6 py-8">
-                    <div className="grid gap-8 md:grid-cols-2">
-                      {/* Content */}
-                      <div>
-                        <h4 className="mb-4 text-lg font-bold text-primary-900">Overview</h4>
-                        <p className="mb-6 leading-relaxed text-slate-700">
-                          {service.fullDescription}
-                        </p>
-
-                        {service.features && (
-                          <div>
-                            <h4 className="mb-4 text-lg font-bold text-primary-900">Key Features</h4>
-                            <ul className="space-y-3">
-                              {service.features.map((feature, idx) => (
-                                <li key={idx} className="flex items-start gap-3">
-                                  <svg
-                                    className="mt-1 h-5 w-5 flex-shrink-0 text-primary-600"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                  >
-                                    <path
-                                      fillRule="evenodd"
-                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                      clipRule="evenodd"
-                                    />
-                                  </svg>
-                                  <span className="text-slate-700">{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Image */}
-                      <div>
-                        {service.image ? (
-                          <img
-                            src={service.image}
-                            alt={service.title}
-                            className="h-80 w-full rounded-lg object-cover shadow-md"
-                          />
-                        ) : (
-                          <div className="flex h-80 items-center justify-center rounded-lg bg-primary-100">
-                            <div className="text-center text-primary-600">
-                              {iconMap[service.icon]}
-                              <p className="mt-4 text-sm font-medium">{service.title}</p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* CTA Button */}
-                    <div className="mt-8 border-t border-primary-200 pt-6">
-                      <Button to="/contact">
-                        Get Started with {service.title}
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Custom Solution Section */}
       <section className="py-20">

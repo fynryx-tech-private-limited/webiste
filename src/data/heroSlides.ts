@@ -10,7 +10,7 @@ export const heroSlides: HeroSlide[] = [
     ctaLabel: 'Learn More',
     ctaPath: '/about',
     background:
-      'https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg'
+      'https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop',
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const heroSlides: HeroSlide[] = [
     ctaLabel: 'View Projects',
     ctaPath: '/projects',
     background:
-      'https://images.pexels.com/photos/6476260/pexels-photo-6476260.jpeg?auto=compress&cs=tinysrgb&w=1600'
+      'https://images.pexels.com/photos/6476260/pexels-photo-6476260.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop',
   },
   {
     id: 3,
@@ -32,6 +32,6 @@ export const heroSlides: HeroSlide[] = [
     ctaLabel: 'Learn More',
     ctaPath: '/about',
     background:
-      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.1.0'
+      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&h=900&fit=crop&auto=format&q=80',
   },
 ]
