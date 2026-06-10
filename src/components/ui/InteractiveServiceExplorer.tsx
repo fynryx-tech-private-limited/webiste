@@ -182,7 +182,6 @@ export function InteractiveServiceExplorer({ services }: InteractiveServiceExplo
 function ServiceCard({ service, index, isActive, onClick }: { service: Service, index: number, isActive: boolean, onClick: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [isHovered, setIsHovered] = useState(false)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return
@@ -202,8 +201,6 @@ function ServiceCard({ service, index, isActive, onClick }: { service: Service, 
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onClick={onClick}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={`group relative cursor-pointer overflow-hidden rounded-3xl border p-8 transition-all duration-500 ${
         isActive 
           ? 'border-teal-400/60 bg-white/60 shadow-[0_20px_60px_-15px_rgba(20,184,166,0.3)] backdrop-blur-xl' 
