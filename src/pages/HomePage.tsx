@@ -10,6 +10,7 @@ import { TestimonialsSection } from '../components/home/TestimonialsSection'
 export function HomePage() {
   return (
     <>
+      
       <HeroCarousel />
       <AboutSection />
       <WhyChooseUs />

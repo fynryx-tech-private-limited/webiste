@@ -87,7 +87,7 @@ export function ServicesPage() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-md bg-primary-900 p-10 text-center text-white">
-            <h3 className="text-2xl font-bold">Need a Custom Solution?</h3>
+            <h3 className="text-2xl font-bold text-white">Need a Custom Solution?</h3>
             <p className="mx-auto mt-3 max-w-xl text-primary-100">
               Tell us about your project and we will craft a tailored plan that fits your
               budget and timeline.

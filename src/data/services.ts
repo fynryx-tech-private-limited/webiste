@@ -121,4 +121,23 @@ export const services: Service[] = [
     image: 'https://images.pexels.com/photos/5361086/pexels-photo-5361086.jpeg',
     // image: '/services/social.png',
   },
+  {
+    id: 'salesforce',
+    title: 'Salesforce Consulting',
+    description:
+      'Optimize your CRM, automate workflows, and drive sales with our expert Salesforce implementation and consulting services.',
+    icon: 'cloud',
+    fullDescription:
+      'We provide end-to-end Salesforce consulting services to help you maximize your CRM investment. From implementation and customization to integration and ongoing support, our certified experts ensure your Salesforce instance aligns perfectly with your business processes.',
+    features: [
+      'Salesforce Implementation',
+      'Custom Development (Apex, LWC)',
+      'Third-party Integrations',
+      'Data Migration',
+      'Sales & Service Cloud Setup',
+      'Ongoing Support & Training',
+    ],
+    technologies: ['Salesforce', 'Apex', 'Lightning Web Components', 'SOQL', 'MuleSoft', 'Data Loader'],
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
 ]
