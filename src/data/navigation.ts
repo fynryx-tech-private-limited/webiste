@@ -17,12 +17,14 @@ export const mainNav: NavItem[] = [
     ],
   },
   { label: 'Projects', path: '/projects' },
+  { label: 'Careers', path: '/careers' },
   { label: 'Contacts', path: '/contact' },
 ]
 
 export const footerNav = [
   { label: 'Home', path: '/' },
   { label: 'About Us', path: '/about' },
+  { label: 'Careers', path: '/careers' },
   { label: 'Contacts', path: '/contact' },
   { label: 'Terms & Conditions', path: '/terms' },
   { label: 'Refund Policy', path: '/refund-policy' },
