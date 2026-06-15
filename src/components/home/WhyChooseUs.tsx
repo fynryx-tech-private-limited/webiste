@@ -6,7 +6,7 @@ const floatDelays = [0, 1.5, 3, 4.5]
 
 export function WhyChooseUs() {
   return (
-    <section className="bg-primary-50 py-20 overflow-hidden">
+    <section className="bg-primary-50 py-12 md:py-20 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <SectionHeading title="Why Choose Us" />
@@ -33,7 +33,6 @@ export function WhyChooseUs() {
                 className="h-full"
               >
                 <motion.article
-                  // @ts-ignore
                   whileHover={{
                     y: -12,
                     scale: 1.03,

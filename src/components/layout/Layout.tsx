@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { TopBar } from './TopBar'
 import { Header } from './Header'
@@ -22,7 +22,9 @@ export function Layout() {
       <TopBar />
       <Header />
       <main className="flex-1">
-        <Outlet />
+        <Suspense fallback={<div className="flex min-h-[50vh] items-center justify-center"><div className="h-8 w-8 animate-spin rounded-full border-4 border-teal-500 border-t-transparent"></div></div>}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>

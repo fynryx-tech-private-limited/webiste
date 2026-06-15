@@ -7,7 +7,7 @@ interface PageHeroProps {
 
 export function PageHero({ title, subtitle }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-primary-900 py-20 text-white">
+    <section className="relative overflow-hidden bg-primary-900 py-12 md:py-20 text-white">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--color-primary-600)_0%,_transparent_55%)] opacity-50" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="brand-tagline text-accent-400">{BRAND_TAGLINE}</p>

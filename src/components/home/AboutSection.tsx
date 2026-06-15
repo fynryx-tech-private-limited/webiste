@@ -7,16 +7,16 @@ export function AboutSection() {
     <AboutParticleBackground>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="relative mx-auto w-full max-w-lg py-6 pl-2 pr-4 sm:pl-4 lg:mx-0 lg:max-w-none lg:py-10 lg:pl-6">
+          <div className="relative mx-auto w-full max-w-lg py-6 px-4 sm:pl-4 lg:mx-0 lg:max-w-none lg:py-10 lg:pl-6">
             <div
-              className="about-photo-accent absolute left-4 top-6 z-0 h-[82%] w-[84%] rounded-lg sm:left-6 sm:top-8"
+              className="about-photo-accent absolute left-2 top-4 sm:left-6 sm:top-8 z-0 h-[85%] w-[85%] sm:h-[82%] sm:w-[84%] rounded-lg"
               aria-hidden="true"
             />
 
             <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=500&fit=crop"
               alt="Team collaboration"
-              className="relative z-10 ml-8 mt-10 w-full rounded-lg bg-white shadow-2xl sm:ml-10 sm:mt-12"
+              className="relative z-10 ml-4 mt-6 sm:ml-10 sm:mt-12 w-[calc(100%-1rem)] sm:w-full rounded-lg bg-white shadow-2xl"
             />
           </div>
 

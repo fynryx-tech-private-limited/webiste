@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: 'Analysis of Security',
     category: 'Ideas / Technology',
     image:
-      'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop',
+      'https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg',
   },
   {
     id: 'ecommerce',

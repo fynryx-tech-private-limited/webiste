@@ -11,7 +11,7 @@ export function ProjectsPage() {
         title="Our Projects"
         subtitle="Explore our portfolio of successful IT implementations across diverse industries."
       />
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
             title="Featured Work"

@@ -1,10 +1,8 @@
-import { useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ShowcaseCanvas } from './ShowcaseCanvas'
 import { ArrowRight, Compass } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { stats } from '../../data/stats'
-import { StatCounter } from '../ui/StatCounter'
 
 // --- Magnetic Button Component ---
 interface MagneticButtonProps {
@@ -40,6 +38,20 @@ export function ShowcaseSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [coords, setCoords] = useState({ x: 50, y: 50 })
   const mouse = useRef({ x: 0, y: 0 })
+  const [currentHeadingIndex, setCurrentHeadingIndex] = useState(0)
+
+  const rotatingHeadings = [
+    { id: 1, title: 'Empower Your Business', highlight: 'with Cutting-Edge IT Solutions' },
+    { id: 2, title: 'Custom IT Solutions', highlight: 'for Every Industry' },
+    { id: 3, title: 'Proactive Support', highlight: 'for Maximum Uptime' },
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeadingIndex((prev) => (prev + 1) % rotatingHeadings.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [rotatingHeadings.length])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!sectionRef.current) return
@@ -64,35 +76,8 @@ export function ShowcaseSection() {
   }
 
   // Split headline text for character-by-character reveal
-  const headlineLine1 = "Start Building the Future with FYNRYX"
-  const line2Words = ["Design -", "Innovate -", "Transform"]
+  const line2Words = ["Design", "Innovate", "Transform"]
 
-  // Container motion variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-        delayChildren: 0.1,
-      }
-    }
-  }
-
-  // Individual character motion variants
-  const charVariants = {
-    hidden: { opacity: 0, y: 25, filter: 'blur(8px)' },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: {
-        type: 'spring' as const,
-        damping: 30,
-        stiffness: 150
-      }
-    }
-  }
 
   // Word-by-word reveal for the second line
   const wordContainerVariants = {
@@ -138,7 +123,7 @@ export function ShowcaseSection() {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative flex min-h-screen w-full flex-col items-center justify-center pt-24 pb-36 overflow-hidden bg-[#020617] select-none"
+      className="relative flex min-h-screen w-full flex-col items-center justify-center pt-16 pb-8 md:pt-24 md:pb-12 overflow-hidden bg-[#020617] select-none"
     >
       {/* Top fade — very subtle blend from light section above */}
       <div className="absolute top-0 left-0 right-0 h-20 z-10 pointer-events-none bg-gradient-to-b from-[#f0fdfb]/8 to-transparent" />
@@ -161,59 +146,89 @@ export function ShowcaseSection() {
       <ShowcaseCanvas mouse={mouse} />
 
       {/* Foreground Content Layer */}
-      <div className="relative z-20 flex w-full max-w-5xl flex-col items-center justify-between px-4 text-center">
-        {/* Headline Container */}
-        <div className="flex flex-col items-center gap-6 mt-16 pointer-events-none">
-          {/* Line 1 - Character Reveal */}
-          <motion.h1
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-wrap justify-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl font-sans"
+      <div className="relative z-20 flex flex-1 w-full max-w-5xl flex-col items-center justify-between px-4 text-center py-4 sm:py-8">
+        <div className="flex flex-col items-center gap-2 mt-4 sm:mt-8 pointer-events-none">
+          {/* Line 1 - Unified Glossy Continuous Flow Heading */}
+          <h1
+            className="flex flex-wrap justify-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-sans text-transparent bg-clip-text bg-[linear-gradient(to_right,#14b8a6_0%,#5eead4_20%,#e5e7eb_40%,#ffffff_50%,#e5e7eb_60%,#5eead4_80%,#14b8a6_100%)] animate-text-shimmer pb-2"
           >
-            {headlineLine1.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                variants={charVariants}
-                className={char === " " ? "mr-3 md:mr-4" : ""}
-              >
-                {char}
-              </motion.span>
-            ))}
-          </motion.h1>
+            Start Building the Future with FYNRYX
+          </h1>
 
-          {/* Line 2 - Word Reveal with Gradient Glows */}
           <motion.div
             variants={wordContainerVariants}
             initial="hidden"
             animate="visible"
-            className="flex items-center gap-3 text-lg font-bold sm:text-2xl md:text-3xl tracking-[0.15em] uppercase"
+            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] font-semibold sm:text-xs md:text-xs tracking-[0.2em] uppercase text-center text-white/80"
           >
-            {line2Words.map((word, idx) => {
-              const colors = [
-                "text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]",
-                "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.2)]",
-                "text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-400 drop-shadow-[0_0_15px_rgba(74,222,128,0.2)]"
-              ]
-              return (
-                <motion.span
-                  key={idx}
-                  variants={wordVariants}
-                  className={colors[idx]}
-                >
-                  {word}
-                </motion.span>
-              )
-            })}
+            {line2Words.map((word, idx) => (
+              <motion.span
+                key={idx}
+                variants={wordVariants}
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.div>
         </div>
 
-        {/* Call to Actions (CTAs) */}
+        {/* Rotating Middle Headings */}
+        <div className="flex-1 flex flex-col items-center justify-center min-h-[160px] my-10 pointer-events-none">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentHeadingIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, filter: 'blur(8px)', y: -15 }}
+              transition={{ duration: 0.35 }}
+              className="flex flex-col items-center gap-3 sm:gap-4"
+            >
+              <motion.h2
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.08 } }
+                }}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-wrap justify-center text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide"
+              >
+                {rotatingHeadings[currentHeadingIndex].title.split(" ").map((word, wordIndex) => (
+                  <span key={wordIndex} className="inline-flex mr-2 md:mr-3 last:mr-0">
+                    <motion.span 
+                      variants={wordVariants}
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]"
+                    >
+                      {word}
+                    </motion.span>
+                  </span>
+                ))}
+              </motion.h2>
+
+              <motion.p
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } }
+                }}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-wrap justify-center text-xl sm:text-2xl md:text-3xl font-semibold text-white/90"
+              >
+                {rotatingHeadings[currentHeadingIndex].highlight.split(" ").map((word, wordIndex) => (
+                  <span key={wordIndex} className="inline-flex mr-2 md:mr-3 last:mr-0">
+                    <motion.span variants={wordVariants}>{word}</motion.span>
+                  </span>
+                ))}
+              </motion.p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Call to Actions (CTAs) (Bottom) */}
         <motion.div
           variants={ctaVariants}
           initial="hidden"
           animate="visible"
-          className="mt-20 flex flex-col sm:flex-row items-center gap-6"
+          className="mt-auto mb-4 md:mb-8 flex flex-col sm:flex-row items-center gap-6"
         >
           <MagneticButton to="/contact" variant="primary">
             <span>Start Your Project</span>
@@ -224,20 +239,6 @@ export function ShowcaseSection() {
             <Compass className="h-4 w-4" />
             <span>Explore Services</span>
           </MagneticButton>
-        </motion.div>
-
-        {/* Stats Section Integrated */}
-        <motion.div 
-          initial={{ opacity: 0, y: 35 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.2, duration: 0.8 }}
-          className="mt-20 w-full max-w-full px-6 sm:px-12 lg:px-24 border-t border-white/5 pt-16"
-        >
-          <div className="grid gap-8 grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <StatCounter key={stat.id} stat={stat} />
-            ))}
-          </div>
         </motion.div>
       </div>
 

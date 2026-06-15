@@ -17,7 +17,7 @@ export function ContactPage() {
         title="Contact Us"
         subtitle="Drop us a line! We are here to answer your questions 24/7."
       />
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
@@ -145,15 +145,18 @@ export function ContactPage() {
             </div>
             
           </div>
-          <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15224.462818253945!2d78.36802024394271!3d17.45417531737267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9100223fb8bf%3A0xc30547e01d99613e!2sFynryx%20Tech%20Private%20Limited!5e0!3m2!1sen!2sin!4v1780903099165!5m2!1sen!2sin"
-  width={1200}
-  height={450}
-  style={{ border: 0 }}
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-/>
-
+          
+          <div className="mt-16 overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+            <iframe
+              title="Fynryx Office Location Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15224.462818253945!2d78.36802024394271!3d17.45417531737267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9100223fb8bf%3A0xc30547e01d99613e!2sFynryx%20Tech%20Private%20Limited!5e0!3m2!1sen!2sin!4v1780903099165!5m2!1sen!2sin"
+              className="w-full"
+              height={450}
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </section>
     </>

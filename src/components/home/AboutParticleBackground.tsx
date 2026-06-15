@@ -246,7 +246,7 @@ export function AboutParticleBackground({ children }: AboutParticleBackgroundPro
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-white py-20">
+    <section ref={sectionRef} className="relative overflow-hidden bg-white py-12 md:py-12 md:py-20">
       <canvas
         ref={canvasRef}
         className="pointer-events-none absolute inset-0 z-0"

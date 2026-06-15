@@ -69,7 +69,7 @@ export function HeroCarousel() {
         <div className="absolute right-20 top-2/5 h-16 w-2 bg-primary-200" />
       </div>
 
-      <div className="relative mx-auto flex h-[520px] max-w-7xl items-center px-4 py-20 sm:h-[580px] sm:px-6 lg:h-[660px] lg:px-8">
+      <div className="relative mx-auto flex h-[520px] max-w-7xl items-center px-4 py-12 md:py-20 sm:h-[580px] sm:px-6 lg:h-[660px] lg:px-8">
         <div className="relative max-w-2xl">
           <div
             className="pointer-events-none absolute inset-0 -z-10 rounded-md"

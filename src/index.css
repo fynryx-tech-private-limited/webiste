@@ -57,7 +57,7 @@
       90deg,
       var(--color-primary-500) 0%,
       var(--color-primary-500) 70%,
-      transparent 70
+      transparent 70%,
       transparent 75%,
       var(--color-primary-400) 75%,
       var(--color-primary-400) 85%,
@@ -162,14 +162,18 @@
     }
   }
 
-  @keyframes hero-highlight-shine {
-    0%,
-    100% {
+  @keyframes text-color-flow {
+    0% {
       background-position: 0% 50%;
     }
-    50% {
-      background-position: 100% 50%;
+    100% {
+      background-position: -200% 50%;
     }
+  }
+
+  .animate-text-shimmer {
+    background-size: 200% auto;
+    animation: text-color-flow 5s linear infinite;
   }
 
   .hero-animate-tagline {
@@ -328,6 +332,15 @@
     transition: width 0.25s ease-out;
   }
 
+  @keyframes zoomBackground {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+.animate-zoom {
+  animation: zoomBackground 30s ease-in-out infinite;
+}
+
   @media (prefers-reduced-motion: reduce) {
     .preloader-logo-wrap {
       animation: none;
@@ -338,3 +351,15 @@
     }
   }
 }
+
+/* High pixel density (Retina) optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+

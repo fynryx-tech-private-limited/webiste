@@ -7,37 +7,39 @@ import * as THREE from 'three'
 // --- Dust Particles System (reacting to cursor) ---
 function InteractiveDustParticles({ mouse }: { mouse: React.MutableRefObject<{ x: number; y: number }> }) {
   const pointsRef = useRef<THREE.Points>(null)
-  
-  const particleCount = 280
-  
+
+  const particleCount = 600
+
   // Build particles positions and initial random vectors
+  /* eslint-disable react-hooks/purity */
   const [positions, initialPositions, speeds] = useMemo(() => {
     const pos = new Float32Array(particleCount * 3)
     const initPos = new Float32Array(particleCount * 3)
     const spd = new Float32Array(particleCount * 3)
-    
+
     for (let i = 0; i < particleCount; i++) {
-      // Position inside a sphere/ellipsoid box
-      const x = (Math.random() - 0.5) * 12
-      const y = (Math.random() - 0.5) * 7
-      const z = (Math.random() - 0.5) * 5
-      
+      // Wide spread to cover both mobile and desktop seamlessly
+      const x = (Math.random() - 0.5) * 35
+      const y = (Math.random() - 0.5) * 15
+      const z = (Math.random() - 0.5) * 8
+
       pos[i * 3] = x
       pos[i * 3 + 1] = y
       pos[i * 3 + 2] = z
-      
+
       initPos[i * 3] = x
       initPos[i * 3 + 1] = y
       initPos[i * 3 + 2] = z
-      
+
       // Floating speed values
       spd[i * 3] = (Math.random() - 0.5) * 0.15
       spd[i * 3 + 1] = (Math.random() * 0.2) + 0.05 // Mostly float upwards
       spd[i * 3 + 2] = (Math.random() - 0.5) * 0.1
     }
-    
+
     return [pos, initPos, spd]
   }, [particleCount])
+  /* eslint-enable react-hooks/purity */
 
   // Custom vertex buffer updating inside frame loop
   useFrame((state) => {
@@ -45,42 +47,45 @@ function InteractiveDustParticles({ mouse }: { mouse: React.MutableRefObject<{ x
     const time = state.clock.getElapsedTime()
     const geo = pointsRef.current.geometry
     const arr = geo.attributes.position.array as Float32Array
-    
+
     const worldMouseX = mouse.current.x * 6
     const worldMouseY = mouse.current.y * 3.5
 
     for (let i = 0; i < particleCount; i++) {
       const idx = i * 3
-      
+
       // Float upwards over time, loop back to bottom if off screen
       arr[idx + 1] += speeds[idx + 1] * 0.02
       if (arr[idx + 1] > 4.5) {
         arr[idx + 1] = -4.5
         arr[idx] = initialPositions[idx]
       }
-      
+
       // Subtle horizontal sway based on sine wave
       arr[idx] += Math.sin(time * 0.8 + i) * 0.002
-      
+
       // React to cursor spotlight: push particles within cursor spotlight radius
       const dx = arr[idx] - worldMouseX
       const dy = arr[idx + 1] - worldMouseY
       const dist = Math.sqrt(dx * dx + dy * dy)
-      
-      if (dist < 2.5) {
-        const force = (2.5 - dist) * 0.18 // Spring physics force
+
+      if (dist < 3.0) {
+        const force = (3.0 - dist) * 0.15 // Gentle spring physics force
         arr[idx] += (dx / dist) * force * 0.1
         arr[idx + 1] += (dy / dist) * force * 0.1
       }
+      
+      // Gentle return force so they don't get stuck at the edges
+      arr[idx] = THREE.MathUtils.lerp(arr[idx], initialPositions[idx], 0.01)
     }
-    
+
     geo.attributes.position.needsUpdate = true
   })
 
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute 
+        <bufferAttribute
           attach="attributes-position"
           args={[positions, 3]}
           count={particleCount}
@@ -88,12 +93,13 @@ function InteractiveDustParticles({ mouse }: { mouse: React.MutableRefObject<{ x
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial 
-        size={0.05} 
-        color="#14B8A6" 
-        transparent={true} 
-        opacity={0.7} 
-        depthWrite={false} 
+      <pointsMaterial
+        size={3}
+        sizeAttenuation={false}
+        color="#14B8A6"
+        transparent={true}
+        opacity={0.8}
+        depthWrite={false}
         blending={THREE.AdditiveBlending}
       />
     </points>
@@ -114,7 +120,7 @@ function VolumetricLightRays() {
   useFrame((state) => {
     if (!groupRef.current) return
     const time = state.clock.getElapsedTime()
-    
+
     // Sway the rays slowly
     groupRef.current.children.forEach((child, index) => {
       const ray = rays[index]
@@ -145,20 +151,20 @@ function VolumetricLightRays() {
   return (
     <group ref={groupRef}>
       {rays.map((ray, idx) => (
-        <mesh 
-          key={idx} 
-          position={ray.position} 
-          rotation={ray.rotation} 
+        <mesh
+          key={idx}
+          position={ray.position}
+          rotation={ray.rotation}
           scale={ray.scale}
         >
           <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial 
-            map={gradientTexture} 
-            transparent={true} 
-            opacity={ray.opacity} 
-            blending={THREE.AdditiveBlending} 
-            depthWrite={false} 
-            side={THREE.DoubleSide} 
+          <meshBasicMaterial
+            map={gradientTexture}
+            transparent={true}
+            opacity={ray.opacity}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+            side={THREE.DoubleSide}
           />
         </mesh>
       ))}

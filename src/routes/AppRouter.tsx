@@ -1,12 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Layout } from '../components/layout/Layout'
-import { HomePage } from '../pages/HomePage'
-import { AboutPage } from '../pages/AboutPage'
-import { ServicesPage } from '../pages/ServicesPage'
-import { ProjectsPage } from '../pages/ProjectsPage'
-import { ContactPage } from '../pages/ContactPage'
-import { LegalPage } from '../pages/LegalPage'
-import { NotFoundPage } from '../pages/NotFoundPage'
+import { lazy } from 'react'
+
+const HomePage = lazy(() => import('../pages/HomePage').then(m => ({ default: m.HomePage })))
+const AboutPage = lazy(() => import('../pages/AboutPage').then(m => ({ default: m.AboutPage })))
+const ServicesPage = lazy(() => import('../pages/ServicesPage').then(m => ({ default: m.ServicesPage })))
+const ProjectsPage = lazy(() => import('../pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })))
+const ContactPage = lazy(() => import('../pages/ContactPage').then(m => ({ default: m.ContactPage })))
+const LegalPage = lazy(() => import('../pages/LegalPage').then(m => ({ default: m.LegalPage })))
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })))
 
 const router = createBrowserRouter([
   {

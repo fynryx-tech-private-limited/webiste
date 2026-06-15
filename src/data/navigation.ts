@@ -13,6 +13,7 @@ export const mainNav: NavItem[] = [
       { label: 'Development Services', path: '/services#development' },
       { label: 'SEO Services', path: '/services#seo' },
       { label: 'Social Media Marketing', path: '/services#social' },
+      { label: 'Salesforce Consulting', path: '/services#salesforce' },
     ],
   },
   { label: 'Projects', path: '/projects' },
@@ -29,7 +30,7 @@ export const footerNav = [
 ]
 
 export const socialLinks = [
-  { label: 'X', href: 'https://x.com', icon: 'Twitter' },
+  // { label: 'X', href: 'https://x.com', icon: 'Twitter' },
   { label: 'Facebook', href: 'https://www.facebook.com/fynryx', icon: 'Facebook' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/fynryx-tech-private-limited/', icon: 'Linkedin' },
   { label: 'Instagram', href: 'https://www.instagram.com/fynryx?igsh=dmU2Z2QxcnV2ZjJq', icon: 'Instagram' },

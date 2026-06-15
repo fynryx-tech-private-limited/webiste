@@ -35,7 +35,7 @@ export function ServicesPage() {
       />
 
       {/* Services Overview */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="relative">
@@ -78,13 +78,13 @@ export function ServicesPage() {
 
       {/* Interactive Service Explorer */}
       <section className="border-t border-primary-100 bg-slate-50 py-16">
-        <InteractiveServiceExplorer services={services} />
+        <InteractiveServiceExplorer services={services} initialActiveId={location.hash.replace('#', '')} />
       </section>
 
 
 
       {/* Custom Solution Section */}
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-md bg-primary-900 p-10 text-center text-white">
             <h3 className="text-2xl font-bold text-white">Need a Custom Solution?</h3>

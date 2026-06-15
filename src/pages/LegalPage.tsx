@@ -9,7 +9,7 @@ export function LegalPage({ title, sections }: LegalPageProps) {
   return (
     <>
       <PageHero title={title} />
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="prose prose-slate mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           {sections.map((section) => (
             <div key={section.heading} className="mb-8">

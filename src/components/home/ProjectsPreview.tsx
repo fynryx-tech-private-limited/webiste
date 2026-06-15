@@ -5,7 +5,7 @@ import { Button } from '../ui/Button'
 
 export function ProjectsPreview() {
   return (
-    <section className="bg-primary-50 py-20">
+    <section className="bg-primary-50 py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Our Projects"

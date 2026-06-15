@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { services } from '../../data/services'
 
 export function ServicesSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(3)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
   
   // Track client window size to make the carousel columns responsive
   useEffect(() => {
@@ -37,13 +39,29 @@ export function ServicesSection() {
 
   // Auto scroll logic (optional, reset index if visibleCount clamps it)
   useEffect(() => {
-    if (currentIndex > maxIndex) {
-      setCurrentIndex(Math.max(maxIndex, 0))
-    }
-  }, [visibleCount, maxIndex, currentIndex])
+    setCurrentIndex(prev => Math.min(prev, Math.max(maxIndex, 0)))
+  }, [maxIndex])
+
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX)
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    if (isLeftSwipe && currentIndex < maxIndex) handleNext()
+    if (isRightSwipe && currentIndex > 0) handlePrev()
+  }
 
   return (
-    <section className="relative py-24 bg-primary-50 select-none overflow-hidden">
+    <section className="relative py-16 md:py-24 bg-primary-50 select-none overflow-hidden">
       {/* Subtle light background accents */}
       <div className="absolute top-1/2 left-1/4 -z-10 h-[400px] w-[400px] rounded-full bg-teal-100/40 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-emerald-100/40 blur-[120px] pointer-events-none" />
@@ -98,38 +116,15 @@ export function ServicesSection() {
               </motion.span>
             </h2>
           </div>
-          
-          {/* Slider controls (Circular buttons) */}
-          <div className="mt-6 sm:mt-0 flex items-center gap-3">
-            <button 
-              onClick={handlePrev} 
-              disabled={currentIndex === 0}
-              className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
-                currentIndex === 0 
-                  ? 'border-primary-100 text-primary-200 cursor-not-allowed' 
-                  : 'border-primary-200 text-primary-700 hover:bg-primary-100 hover:border-teal-400 hover:text-teal-600 active:scale-95 cursor-pointer'
-              }`}
-              aria-label="Previous service"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button 
-              onClick={handleNext} 
-              disabled={currentIndex >= maxIndex}
-              className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
-                currentIndex >= maxIndex 
-                  ? 'border-primary-100 text-primary-200 cursor-not-allowed' 
-                  : 'border-primary-200 text-primary-700 hover:bg-primary-100 hover:border-teal-400 hover:text-teal-600 active:scale-95 cursor-pointer'
-              }`}
-              aria-label="Next service"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
         </div>
 
         {/* Carousel Slider Wrapper */}
-        <div className="relative mt-12 overflow-hidden mx-[-12px]">
+        <div 
+          className="relative mt-12 overflow-hidden mx-[-12px]"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           <div 
             className="flex transition-transform duration-500 ease-in-out"
             style={{
@@ -178,6 +173,22 @@ export function ServicesSection() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="mt-10 flex justify-center gap-3">
+          {Array.from({ length: Math.max(1, maxIndex + 1) }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                currentIndex === idx 
+                  ? 'w-10 bg-teal-500 shadow-sm shadow-teal-500/30' 
+                  : 'w-2.5 bg-teal-200/60 hover:bg-teal-300/80 hover:w-4'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
 
       </div>

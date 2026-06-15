@@ -9,6 +9,7 @@ import { Logo } from '../ui/Logo'
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const [mobileDropdowns, setMobileDropdowns] = useState<string[]>([])
   const [visible, setVisible] = useState(true)
   const [atTop, setAtTop] = useState(true)
   const lastScrollY = useRef(0)
@@ -28,8 +29,10 @@ export function Header() {
             setVisible(true)
           } else if (currentY > lastScrollY.current + 5) {
             // Scrolling DOWN → hide
-            setVisible(false)
-            setMobileOpen(false)
+            // Only hide header when mobile menu is not open
+            if (!mobileOpen) {
+              setVisible(false)
+            }
           }
 
           lastScrollY.current = currentY
@@ -41,7 +44,7 @@ export function Header() {
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [mobileOpen])
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     `nav-link rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 ${
@@ -159,32 +162,69 @@ export function Header() {
             className="overflow-hidden border-t border-primary-100 bg-white px-4 py-4 lg:hidden"
           >
             {mainNav.map((item) => (
-              <div key={item.path}>
-                <NavLink
-                  to={item.path}
-                  end={item.path === '/'}
-                  onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) =>
-                    `block rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors ${
-                      isActive ? 'bg-primary-50 text-primary-600' : 'text-slate-700 hover:text-primary-600'
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-                {item.children && (
-                  <div className="ml-4 border-l border-primary-100 pl-3">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.path}
-                        to={child.path}
-                        onClick={() => setMobileOpen(false)}
-                        className="block py-1.5 text-sm text-slate-600 transition-colors hover:text-primary-600"
+              <div key={item.path} className="mb-1">
+                {item.children ? (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setMobileDropdowns((prev) =>
+                          prev.includes(item.path)
+                            ? prev.filter((p) => p !== item.path)
+                            : [...prev, item.path]
+                        )
+                      }}
+                      className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-wider text-slate-700 transition-colors hover:text-primary-600"
+                    >
+                      {item.label}
+                      <motion.svg
+                        animate={{ rotate: mobileDropdowns.includes(item.path) ? 180 : 0 }}
+                        className="h-4 w-4 text-slate-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                       >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </motion.svg>
+                    </button>
+                    <AnimatePresence>
+                      {mobileDropdowns.includes(item.path) && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="ml-4 mt-1 border-l border-primary-100 pl-3 pb-2">
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.path}
+                                to={child.path}
+                                onClick={() => setMobileOpen(false)}
+                                className="block py-2 text-sm text-slate-600 transition-colors hover:text-primary-600"
+                              >
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.path}
+                    end={item.path === '/'}
+                    onClick={() => setMobileOpen(false)}
+                    className={({ isActive }) =>
+                      `block rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors ${
+                        isActive ? 'bg-primary-50 text-primary-600' : 'text-slate-700 hover:text-primary-600'
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
                 )}
               </div>
             ))}

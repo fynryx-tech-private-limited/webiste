@@ -10,7 +10,7 @@ export function AboutPage() {
         title="About Us"
         subtitle="Over 10 years we help companies reach their financial and branding goals through innovative technology."
       />
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -42,7 +42,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-20">
+      <section className="bg-slate-50 py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title="Why Choose Us" />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
