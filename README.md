@@ -71,3 +71,4 @@ export default defineConfig([
   },
 ])
 ```
+fynryx tech private limited
