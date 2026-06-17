@@ -5,6 +5,7 @@ import { SectionHeading } from '../components/ui/SectionHeading'
 import { services } from '../data/services'
 import { Button } from '../components/ui/Button'
 import { InteractiveServiceExplorer } from '../components/ui/InteractiveServiceExplorer'
+import { SEO } from '../utils/useSEO'
 
 export function ServicesPage() {
   const location = useLocation()
@@ -29,6 +30,10 @@ export function ServicesPage() {
 
   return (
     <>
+      <SEO 
+        title="Our IT Services - Fynryx" 
+        description="Comprehensive IT solutions including web development, mobile apps, and cloud computing designed to help your business thrive in the digital age." 
+      />
       <PageHero
         title="Our Services"
         subtitle="Comprehensive IT solutions designed to help your business thrive in the digital age."
@@ -42,6 +47,8 @@ export function ServicesPage() {
               <img
                 src="https://images.unsplash.com/photo-1702047143580-0f349be86369?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Fynryx IT services and digital solutions"
+                loading="lazy"
+                decoding="async"
                 className="rounded-md shadow-xl"
               />
             </div>

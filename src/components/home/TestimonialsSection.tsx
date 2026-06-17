@@ -29,11 +29,11 @@ export function TestimonialsSection() {
   const maxIndex = Math.max(0, testimonials.length - visibleCount)
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0))
+    setCurrentIndex(Math.max(clampedCurrentIndex - 1, 0))
   }
 
   const handleNext = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex))
+    setCurrentIndex(Math.min(clampedCurrentIndex + 1, maxIndex))
   }
 
   // Auto slide
@@ -44,10 +44,7 @@ export function TestimonialsSection() {
     return () => clearInterval(timer)
   }, [maxIndex])
 
-  // Adjust index if window resizes and maxIndex decreases
-  useEffect(() => {
-    setCurrentIndex(prev => Math.min(prev, Math.max(maxIndex, 0)))
-  }, [maxIndex])
+  const clampedCurrentIndex = Math.min(currentIndex, Math.max(maxIndex, 0))
 
   const minSwipeDistance = 50
 
@@ -104,7 +101,7 @@ export function TestimonialsSection() {
           <div 
             className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`
+              transform: `translateX(-${clampedCurrentIndex * (100 / visibleCount)}%)`
             }}
           >
             {testimonials.map((testimonial) => (

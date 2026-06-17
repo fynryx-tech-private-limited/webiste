@@ -2,10 +2,15 @@ import { PageHero } from '../components/ui/PageHero'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { ProjectCard } from '../components/ui/ProjectCard'
 import { projects } from '../data/projects'
+import { SEO } from '../utils/useSEO'
 
 export function ProjectsPage() {
   return (
     <>
+      <SEO 
+        title="Our Projects - Fynryx" 
+        description="Explore Fynryx's portfolio of successful IT implementations and custom software solutions across diverse industries." 
+      />
       <PageHero
     
         title="Our Projects"

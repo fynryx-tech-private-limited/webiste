@@ -8,9 +8,15 @@ import { ProjectsPreview } from '../components/home/ProjectsPreview'
 import { CtaBanner } from '../components/home/CtaBanner'
 
 
+import { SEO } from '../utils/useSEO'
+
 export function HomePage() {
   return (
     <>
+      <SEO 
+        title="Fynryx – Design. Innovate. Transform." 
+        description="Fynryx provides top-tier IT services including web development, mobile apps, cloud computing, and managed IT support to transform your business." 
+      />
       <ShowcaseSection />
       {/* <HeroCarousel /> */}
       <AboutSection />

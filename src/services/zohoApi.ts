@@ -22,9 +22,12 @@ export async function fetchJobOpenings(): Promise<JobOpening[]> {
       try {
         const urlObj = new URL(ZOHO_SHEET_CSV_URL)
         fetchUrl = `/api/zoho${urlObj.pathname}${urlObj.search}`
-      } catch (e) {
+      } catch {
         // Fallback to original URL if URL parsing fails
       }
+    } else if (!import.meta.env.DEV && ZOHO_SHEET_CSV_URL.includes('sheet.zohopublic.in')) {
+      // In production, Zoho blocks CORS, so use a public CORS proxy
+      fetchUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(ZOHO_SHEET_CSV_URL)}`
     }
 
     const response = await fetch(fetchUrl)
@@ -44,7 +47,7 @@ export async function fetchJobOpenings(): Promise<JobOpening[]> {
       console.error("Errors parsing CSV:", results.errors)
     }
 
-    const jobs: JobOpening[] = results.data.map((row: any) => {
+    const jobs: JobOpening[] = (results.data as Record<string, string>[]).map((row) => {
       return {
         id: String(row.id || Math.random().toString(36).substr(2, 9)),
         title: row.title || 'Untitled Position',

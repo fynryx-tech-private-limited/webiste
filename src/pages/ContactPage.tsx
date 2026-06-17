@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { PageHero } from '../components/ui/PageHero'
 import { Button } from '../components/ui/Button'
 import { contactInfo } from '../data/contact'
+import { SEO } from '../utils/useSEO'
 
 export function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
@@ -35,7 +36,7 @@ export function ContactPage() {
       } else {
         setError(result.message || 'Submission failed')
       }
-    } catch (err) {
+    } catch {
       setError('Network error')
     } finally {
       setLoading(false)
@@ -44,6 +45,10 @@ export function ContactPage() {
 
   return (
     <>
+      <SEO 
+        title="Contact Us - Fynryx" 
+        description="Get in touch with Fynryx for your IT service needs. We are here to answer your questions 24/7." 
+      />
       <PageHero title='Contact Us' subtitle='Drop us a line! We are here to answer your questions 24/7.' />
       <section className='py-12 md:py-20'>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>

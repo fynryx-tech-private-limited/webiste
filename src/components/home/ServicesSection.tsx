@@ -30,17 +30,22 @@ export function ServicesSection() {
   const maxIndex = services.length - visibleCount
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0))
+    setCurrentIndex(Math.max(clampedCurrentIndex - 1, 0))
   }
 
   const handleNext = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex))
+    setCurrentIndex(Math.min(clampedCurrentIndex + 1, maxIndex))
   }
 
-  // Auto scroll logic (optional, reset index if visibleCount clamps it)
+  // Auto slide
   useEffect(() => {
-    setCurrentIndex(prev => Math.min(prev, Math.max(maxIndex, 0)))
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+    }, 5000)
+    return () => clearInterval(timer)
   }, [maxIndex])
+
+  const clampedCurrentIndex = Math.min(currentIndex, Math.max(maxIndex, 0))
 
   const minSwipeDistance = 50
 
@@ -128,7 +133,7 @@ export function ServicesSection() {
           <div 
             className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`
+              transform: `translateX(-${clampedCurrentIndex * (100 / visibleCount)}%)`
             }}
           >
             {services.map((service) => (
@@ -182,7 +187,7 @@ export function ServicesSection() {
               key={idx}
               onClick={() => setCurrentIndex(idx)}
               className={`h-2.5 rounded-full transition-all duration-300 ${
-                currentIndex === idx 
+                clampedCurrentIndex === idx 
                   ? 'w-10 bg-primary-800 shadow-sm shadow-primary-800/30' 
                   : 'w-2.5 bg-primary-800/30 hover:bg-primary-800/50 hover:w-4'
               }`}

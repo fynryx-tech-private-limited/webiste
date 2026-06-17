@@ -5,9 +5,15 @@ import { Button } from '../components/ui/Button'
 import { AboutParticleBackground } from '../components/home/AboutParticleBackground'
 import { ProjectsPreview } from '../components/home/ProjectsPreview'
 
+import { SEO } from '../utils/useSEO'
+
 export function AboutPage() {
   return (
     <>
+      <SEO 
+        title="About Us - Fynryx" 
+        description="Learn about Fynryx, a values-driven technology agency dedicated to empowering businesses with cutting-edge IT solutions." 
+      />
       <PageHero
         title="About Us"
         subtitle="Over 10 years we help companies reach their financial and branding goals through innovative technology."
@@ -38,6 +44,8 @@ export function AboutPage() {
             <img
               src="/about-team.jpg"
               alt="Our team at Fynryx"
+              loading="lazy"
+              decoding="async"
               className="rounded-2xl shadow-xl"
             />
           </div>

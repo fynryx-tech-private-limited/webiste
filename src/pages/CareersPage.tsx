@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { fetchJobOpenings } from '../services/zohoApi'
 import type { JobOpening } from '../data/careers'
+import { SEO } from '../utils/useSEO'
 
 export function CareersPage() {
   const [jobs, setJobs] = useState<JobOpening[]>([])
@@ -29,6 +30,10 @@ export function CareersPage() {
 
   return (
     <>
+      <SEO 
+        title="Careers at Fynryx" 
+        description="Join our dynamic team and help us build the future of technology solutions. View our open positions and life at Fynryx." 
+      />
       <PageHero
         title="Careers at Fynryx"
         subtitle="Join our dynamic team and help us build the future of technology solutions."
@@ -48,6 +53,8 @@ export function CareersPage() {
               <img
                 src="/careers-team.jpg"
                 alt="Team working together at Fynryx"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-900/30 to-transparent pointer-events-none"></div>
@@ -136,6 +143,8 @@ export function CareersPage() {
                 <img
                   src="/office-space.jpg"
                   alt="Office interior"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-primary-900/20 to-transparent pointer-events-none"></div>

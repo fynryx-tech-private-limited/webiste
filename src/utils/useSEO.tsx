@@ -11,7 +11,7 @@ export interface PageSEOProps {
   ogType?: string
 }
 
-export function useSEO(seo: PageSEOProps) {
+export function SEO(seo: PageSEOProps) {
   return (
     <Helmet>
       <title>{seo.title}</title>
@@ -31,9 +31,4 @@ export function useSEO(seo: PageSEOProps) {
       {seo.ogImage && <meta name="twitter:image" content={seo.ogImage} />}
     </Helmet>
   )
-}
-
-// Export default component wrapper for easy use
-export function SEO(props: PageSEOProps) {
-  return useSEO(props)
 }
