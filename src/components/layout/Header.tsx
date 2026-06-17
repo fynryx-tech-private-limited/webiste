@@ -102,6 +102,16 @@ export function Header() {
                   )}
                 </AnimatePresence>
               </div>
+            ) : item.path.startsWith('http') ? (
+              <a
+                key={item.path}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`nav-link rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200 text-slate-600 hover:text-primary-600`}
+              >
+                {item.label}
+              </a>
             ) : (
               <NavLink
                 key={item.path}
@@ -118,15 +128,18 @@ export function Header() {
         {/* Right — contact info + CTA */}
         <div className="hidden items-center gap-4 lg:flex">
           <div className="text-right">
-            <p className="text-[0.6rem] font-semibold uppercase tracking-widest text-slate-400">
+            <p className="text-[0.6rem] font-semibold uppercase tracking-widest text-slate-400 mb-0.5">
               Have Any Questions?
             </p>
-            <a
-              href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
-              className="text-sm font-bold text-primary-800 hover:text-primary-600 transition-colors"
-            >
-              {contactInfo.phone}
-            </a>
+            <div className="flex items-center justify-end gap-3">
+              <a
+                href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
+                className="text-sm font-bold text-primary-800 hover:text-primary-600 transition-colors"
+              >
+                {contactInfo.phone}
+              </a>
+
+            </div>
           </div>
           <Button to="/contact" size="sm">
             Free Quote
@@ -212,6 +225,16 @@ export function Header() {
                       )}
                     </AnimatePresence>
                   </>
+                ) : item.path.startsWith('http') ? (
+                  <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileOpen(false)}
+                    className="block rounded-md px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors text-slate-700 hover:text-primary-600"
+                  >
+                    {item.label}
+                  </a>
                 ) : (
                   <NavLink
                     to={item.path}

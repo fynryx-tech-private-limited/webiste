@@ -2,20 +2,32 @@ import Papa from 'papaparse'
 import { jobOpenings as mockJobOpenings } from '../data/careers'
 import type { JobOpening } from '../data/careers'
 
-// The public "Publish to Web" CSV link from Google Sheets
-// Set this in your .env file as VITE_GOOGLE_SHEET_CSV_URL
-const GOOGLE_SHEET_CSV_URL = import.meta.env.VITE_GOOGLE_SHEET_CSV_URL || ''
+// The public CSV export link from Zoho Sheets
+// Set this in your .env file as VITE_ZOHO_SHEET_CSV_URL
+const ZOHO_SHEET_CSV_URL = import.meta.env.VITE_ZOHO_SHEET_CSV_URL || ''
 
 export async function fetchJobOpenings(): Promise<JobOpening[]> {
-  if (!GOOGLE_SHEET_CSV_URL) {
-    console.warn("Google Sheet CSV URL not configured. Using fallback mock data.")
+  if (!ZOHO_SHEET_CSV_URL) {
+    console.warn("Zoho Sheet CSV URL not configured. Using fallback mock data.")
     return new Promise((resolve) => {
       setTimeout(() => resolve(mockJobOpenings), 600)
     })
   }
 
   try {
-    const response = await fetch(GOOGLE_SHEET_CSV_URL)
+    let fetchUrl = ZOHO_SHEET_CSV_URL
+    
+    // In local development, use Vite's proxy to bypass CORS
+    if (import.meta.env.DEV && ZOHO_SHEET_CSV_URL.includes('sheet.zohopublic.in')) {
+      try {
+        const urlObj = new URL(ZOHO_SHEET_CSV_URL)
+        fetchUrl = `/api/zoho${urlObj.pathname}${urlObj.search}`
+      } catch (e) {
+        // Fallback to original URL if URL parsing fails
+      }
+    }
+
+    const response = await fetch(fetchUrl)
     if (!response.ok) {
       throw new Error(`Failed to fetch CSV: ${response.statusText}`)
     }
@@ -50,7 +62,7 @@ export async function fetchJobOpenings(): Promise<JobOpening[]> {
 
     return jobs
   } catch (error) {
-    console.error("Error fetching jobs from Google Sheets:", error)
+    console.error("Error fetching jobs from Zoho Sheets:", error)
     return mockJobOpenings
   }
 }

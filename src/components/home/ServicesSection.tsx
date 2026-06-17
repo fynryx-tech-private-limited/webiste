@@ -183,8 +183,8 @@ export function ServicesSection() {
               onClick={() => setCurrentIndex(idx)}
               className={`h-2.5 rounded-full transition-all duration-300 ${
                 currentIndex === idx 
-                  ? 'w-10 bg-teal-500 shadow-sm shadow-teal-500/30' 
-                  : 'w-2.5 bg-teal-200/60 hover:bg-teal-300/80 hover:w-4'
+                  ? 'w-10 bg-primary-800 shadow-sm shadow-primary-800/30' 
+                  : 'w-2.5 bg-primary-800/30 hover:bg-primary-800/50 hover:w-4'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

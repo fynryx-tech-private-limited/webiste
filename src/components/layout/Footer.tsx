@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { footerNav, socialLinks } from '../../data/navigation'
 import { contactInfo } from '../../data/contact'
-import { BRAND_TAGLINE } from '../../data/brand'
+
 import { Logo } from '../ui/Logo'
 import { SocialIcons } from '../ui/SocialIcons'
 
@@ -9,40 +9,49 @@ export function Footer() {
   return (
     <footer className="border-t border-primary-100 bg-primary-50 text-slate-600">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <div className="flex flex-col gap-10 md:grid md:grid-cols-2 lg:flex lg:flex-row lg:justify-between">
+          <div className="lg:max-w-[320px]">
             <Logo />
-            <p className="brand-tagline mt-3">{BRAND_TAGLINE}</p>
             <p className="mt-4 text-sm leading-relaxed">
               Over 10 years we help companies reach their financial and branding goals. A
               values-driven technology agency dedicated to innovation.
             </p>
           </div>
 
-          <div>
-            <h3 className="brand-eyebrow mb-4 text-primary-800">Our Address</h3>
+          <div className="lg:max-w-[280px]">
+            <h3 className="font-semibold text-slate-900 mb-4">Address</h3>
             <p className="text-sm leading-relaxed">{contactInfo.address}</p>
           </div>
 
           <div>
-            <h3 className="brand-eyebrow mb-4 text-primary-800">Our Mailbox</h3>
+            <h3 className="font-semibold text-slate-900 mb-4">Mailbox</h3>
             <a
               href={`mailto:${contactInfo.email}`}
-              className="text-sm text-primary-600 hover:text-primary-700"
+              className="text-sm text-slate-600 hover:text-primary-600 transition-colors"
             >
               {contactInfo.email}
             </a>
-            <h3 className="brand-eyebrow mb-2 mt-6 text-primary-800">Our Phone</h3>
-            <a
-              href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
-              className="text-sm text-primary-600 hover:text-primary-700"
-            >
-              {contactInfo.phone}
-            </a>
+            <h3 className="font-semibold text-slate-900 mb-2 mt-6">Contact Us</h3>
+            <div className="flex flex-col gap-1">
+              <a
+                href={`tel:${contactInfo.phone.replace(/\s/g, '')}`}
+                className="text-sm text-slate-600 hover:text-primary-600 transition-colors"
+              >
+                {contactInfo.phone}
+              </a>
+              {contactInfo.phone2 && (
+                <a
+                  href={`tel:${contactInfo.phone2.replace(/\s/g, '')}`}
+                  className="text-sm text-slate-600 hover:text-primary-600 transition-colors"
+                >
+                  {contactInfo.phone2}
+                </a>
+              )}
+            </div>
           </div>
 
           <div>
-            <h3 className="brand-eyebrow mb-4 text-primary-800">Quick Links</h3>
+            <h3 className="font-semibold text-slate-900 mb-4">Quick Links</h3>
             <ul className="space-y-2">
               {footerNav.map((link) => (
                 <li key={link.path}>

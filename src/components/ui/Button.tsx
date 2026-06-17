@@ -12,6 +12,7 @@ interface ButtonProps {
   type?: 'button' | 'submit'
   className?: string
   onClick?: () => void
+  disabled?: boolean
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -39,6 +40,7 @@ export function Button({
   type = 'button',
   className = '',
   onClick,
+  disabled,
 }: ButtonProps) {
   const base =
     'inline-flex items-center justify-center rounded-md font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500'
@@ -61,7 +63,7 @@ export function Button({
   }
 
   return (
-    <button type={type} className={classes} onClick={onClick}>
+    <button type={type} className={classes} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   )

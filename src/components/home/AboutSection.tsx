@@ -14,7 +14,7 @@ export function AboutSection() {
             />
 
             <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=500&fit=crop"
+              src="/fynryx-team.jpg"
               alt="Team collaboration"
               className="relative z-10 ml-4 mt-6 sm:ml-10 sm:mt-12 w-[calc(100%-1rem)] sm:w-full rounded-lg bg-white shadow-2xl"
             />
@@ -22,7 +22,7 @@ export function AboutSection() {
 
           <div className="relative z-10">
             <SectionHeading
-              eyebrow="// About Us"
+              // eyebrow="// About Us"
               title="Welcome to Fynryx"
               align="left"
             />

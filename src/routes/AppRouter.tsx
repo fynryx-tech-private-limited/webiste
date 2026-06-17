@@ -3,6 +3,7 @@ import { Layout } from '../components/layout/Layout'
 import { lazy } from 'react'
 
 const HomePage = lazy(() => import('../pages/HomePage').then(m => ({ default: m.HomePage })))
+const CoursesPage = lazy(() => import('../pages/CoursesPage').then(m => ({ default: m.CoursesPage })))
 const AboutPage = lazy(() => import('../pages/AboutPage').then(m => ({ default: m.AboutPage })))
 const ServicesPage = lazy(() => import('../pages/ServicesPage').then(m => ({ default: m.ServicesPage })))
 const ProjectsPage = lazy(() => import('../pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })))
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: 'courses', element: <CoursesPage /> },
       { path: 'about', element: <AboutPage /> },
       { path: 'services', element: <ServicesPage /> },
       { path: 'projects', element: <ProjectsPage /> },
@@ -63,7 +65,7 @@ const router = createBrowserRouter([
               {
                 heading: 'How to Request a Refund',
                 content:
-                  'Contact our support team at info@fynryx.com with your order details and reason for the refund request. We will review and respond within 5 business days.',
+                  'Contact our support team at projects@fynryx.com with your order details and reason for the refund request. We will review and respond within 5 business days.',
               },
               {
                 heading: 'Processing Time',

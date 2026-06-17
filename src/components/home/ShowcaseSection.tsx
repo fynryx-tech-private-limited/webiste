@@ -15,7 +15,7 @@ function MagneticButton({ children, to, variant }: MagneticButtonProps) {
   const baseStyles = "relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-wider transition-all duration-300 ease-out"
   
   const variantStyles = variant === 'primary'
-    ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-lg shadow-teal-500/25 border border-teal-400/30 hover:shadow-teal-500/40"
+    ? "bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-sm shadow-teal-500/10 border border-teal-400/20 hover:shadow-md hover:shadow-teal-500/25"
     : "border border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/40"
 
   return (
@@ -173,7 +173,7 @@ export function ShowcaseSection() {
         </div>
 
         {/* Rotating Middle Headings */}
-        <div className="flex-1 flex flex-col items-center justify-center min-h-[160px] my-10 pointer-events-none">
+        <div className="flex-none sm:flex-1 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] mt-8 mb-4 sm:my-10 pointer-events-none">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentHeadingIndex}
@@ -228,7 +228,7 @@ export function ShowcaseSection() {
           variants={ctaVariants}
           initial="hidden"
           animate="visible"
-          className="mt-auto mb-4 md:mb-8 flex flex-col sm:flex-row items-center gap-6"
+          className="mt-4 sm:mt-auto mb-4 md:mb-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
         >
           <MagneticButton to="/contact" variant="primary">
             <span>Start Your Project</span>

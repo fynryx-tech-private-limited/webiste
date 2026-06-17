@@ -2,6 +2,8 @@ import { PageHero } from '../components/ui/PageHero'
 import { SectionHeading } from '../components/ui/SectionHeading'
 import { whyChooseUs } from '../data/whyChooseUs'
 import { Button } from '../components/ui/Button'
+import { AboutParticleBackground } from '../components/home/AboutParticleBackground'
+import { ProjectsPreview } from '../components/home/ProjectsPreview'
 
 export function AboutPage() {
   return (
@@ -10,7 +12,7 @@ export function AboutPage() {
         title="About Us"
         subtitle="Over 10 years we help companies reach their financial and branding goals through innovative technology."
       />
-      <section className="py-12 md:py-20">
+      <AboutParticleBackground>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -34,13 +36,14 @@ export function AboutPage() {
               </Button>
             </div>
             <img
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1184&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Our team"
+              src="/about-team.jpg"
+              alt="Our team at Fynryx"
               className="rounded-2xl shadow-xl"
             />
           </div>
         </div>
-      </section>
+      </AboutParticleBackground>
+
 
       <section className="bg-slate-50 py-12 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -63,6 +66,7 @@ export function AboutPage() {
           </div>
         </div>
       </section>
+      <ProjectsPreview />
     </>
   )
 }

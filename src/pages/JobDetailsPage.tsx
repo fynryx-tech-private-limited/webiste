@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { fetchJobDetails } from '../services/sheetsApi'
+import { motion, AnimatePresence } from 'framer-motion'
+import { fetchJobDetails } from '../services/zohoApi'
 import type { JobOpening } from '../data/careers'
 import { PageHero } from '../components/ui/PageHero'
 
@@ -9,6 +9,7 @@ export function JobDetailsPage() {
   const { jobId } = useParams<{ jobId: string }>()
   const [job, setJob] = useState<JobOpening | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     let mounted = true
@@ -55,75 +56,92 @@ export function JobDetailsPage() {
       />
 
       <section className="py-12 md:py-20 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-3">
-            {/* Left Column: Job Details */}
-            <div className="lg:col-span-2 space-y-10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100"
-              >
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">About the Role</h3>
-                <div className="space-y-4 text-slate-600 leading-relaxed">
-                  {job.description.map((paragraph, idx) => (
-                    <p key={idx}>{paragraph}</p>
-                  ))}
-                </div>
-
-                <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">Requirements</h3>
-                <ul className="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
-                  {job.requirements.map((req, idx) => (
-                    <li key={idx}>{req}</li>
-                  ))}
-                </ul>
-
-                <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">Benefits</h3>
-                <ul className="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
-                  {job.benefits.map((benefit, idx) => (
-                    <li key={idx}>{benefit}</li>
-                  ))}
-                </ul>
-              </motion.div>
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100"
+          >
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">About the Role</h3>
+            <div className="space-y-4 text-slate-600 leading-relaxed">
+              {job.description.map((paragraph, idx) => (
+                <p key={idx}>{paragraph}</p>
+              ))}
             </div>
 
-            {/* Right Column: Application Form (ZOHO) */}
-            <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white p-6 rounded-2xl shadow-xl border border-primary-100 sticky top-24"
+            <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">Requirements</h3>
+            <ul className="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+              {job.requirements.map((req, idx) => (
+                <li key={idx}>{req}</li>
+              ))}
+            </ul>
+
+            <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">Benefits</h3>
+            <ul className="list-disc list-inside space-y-2 text-slate-600 leading-relaxed">
+              {job.benefits.map((benefit, idx) => (
+                <li key={idx}>{benefit}</li>
+              ))}
+            </ul>
+
+            <div className="mt-12 pt-8 border-t border-slate-100 text-center">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white bg-primary-600 rounded-xl hover:bg-primary-700 shadow-lg shadow-primary-600/30 hover:shadow-xl hover:shadow-primary-600/40 hover:-translate-y-1 transition-all duration-300"
               >
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Apply for this position</h3>
-                <p className="text-sm text-slate-500 mb-6">
-                  Please fill out the form below to submit your application.
-                </p>
-                
-                {/* ZOHO Forms Container */}
-                <div className="w-full min-h-[500px] bg-slate-50 rounded-xl border border-slate-200 flex flex-col items-center justify-center p-6 text-center">
-                  {/* 
-                    NOTE TO DEVELOPER: 
-                    Replace the content of this div with the ZOHO forms embed code (iframe or script).
-                    Example:
-                    <iframe src="YOUR_ZOHO_FORM_URL" className="w-full h-[600px] border-0 rounded-xl"></iframe>
-                  */}
-                  <div className="w-16 h-16 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <h4 className="font-semibold text-slate-700 mb-2">Zoho Form Integration</h4>
-                  <p className="text-sm text-slate-500">
-                    Embed your Zoho form iframe or script here to collect applicant data directly.
-                  </p>
-                </div>
-              </motion.div>
+                Apply for this Position
+              </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
+
+      {/* Application Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-white">
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">Apply for {job.title}</h3>
+                  <p className="text-sm text-slate-500">Please fill out the form below.</p>
+                </div>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+                  aria-label="Close modal"
+                >
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Modal Body (Zoho Form Iframe) */}
+              <div className="flex-1 overflow-y-auto bg-slate-50">
+                <iframe 
+                  src="https://forms.zohopublic.in/adminfyn1/form/FYNRYXJobApplicationForm/formperma/w-BIKUwLdIZm-eWhHVw3fi7bKSfd-6hLB2Dn25VubyE" 
+                  className="w-full h-full min-h-[700px] border-0"
+                  title="Job Application Form"
+                >
+                  Loading…
+                </iframe>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

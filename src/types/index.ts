@@ -60,5 +60,6 @@ export interface ContactInfo {
   address: string
   email: string
   phone: string
+  phone2?: string
   hours: string
 }

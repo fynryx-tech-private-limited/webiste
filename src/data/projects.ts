@@ -2,31 +2,26 @@ import type { Project } from '../types'
 
 export const projects: Project[] = [
   {
-    id: 'vr-app',
-    title: 'App for Virtual Reality',
-    category: 'Design / Ideas',
+    id: 'LMS',
+    title: 'Learning Management System',
+    category: 'Learning / Education',
     image:
       'https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=600&h=400&fit=crop',
   },
   {
-    id: 'security',
-    title: 'Analysis of Security',
-    category: 'Ideas / Technology',
+    id: ' Ecommerce',
+    title: 'IARAA',
+    category: 'Ecommerce / Online Store',
     image:
-      'https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg',
+      'https://images.pexels.com/photos/6214470/pexels-photo-6214470.jpeg',
   },
   {
-    id: 'ecommerce',
-    title: 'eCommerce Website',
-    category: 'Design / Ideas',
+    id: 'pg management',
+    title: 'FYNRYX Pg Management',
+    category: 'Management / Saas',
     image:
-      'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+      'https://images.pexels.com/photos/5137963/pexels-photo-5137963.jpeg',
   },
-  {
-    id: 'social-app',
-    title: 'Social Media App',
-    category: 'Design / Technology',
-    image:
-      'https://plus.unsplash.com/premium_photo-1683262038148-2ac280407276?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
+  
+ 
 ]

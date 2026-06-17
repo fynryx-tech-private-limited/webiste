@@ -6,7 +6,7 @@ import { ShowcaseSection } from '../components/home/ShowcaseSection'
 import { ProjectsPreview } from '../components/home/ProjectsPreview'
 // import { StatsSection } from '../components/home/StatsSection'
 import { CtaBanner } from '../components/home/CtaBanner'
-import { TestimonialsSection } from '../components/home/TestimonialsSection'
+
 
 export function HomePage() {
   return (
@@ -16,11 +16,11 @@ export function HomePage() {
       <AboutSection />
       <WhyChooseUs />
       <ServicesSection />
-      {/* <ShowcaseSection /> */}
       <ProjectsPreview />
+      {/* <ShowcaseSection /> */}
       {/* <StatsSection /> */}
       <CtaBanner />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
     </>
   )
 }

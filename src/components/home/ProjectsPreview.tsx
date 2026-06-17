@@ -11,9 +11,11 @@ export function ProjectsPreview() {
           title="Our Projects"
           description="We deliver innovative IT solutions across diverse sectors, enhancing efficiency and driving success through custom technology implementations."
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 flex flex-wrap justify-center gap-6">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <div key={project.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
+              <ProjectCard project={project} index={index} />
+            </div>
           ))}
         </div>
         <div className="mt-10 text-center">
