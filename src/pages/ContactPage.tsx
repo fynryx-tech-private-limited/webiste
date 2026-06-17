@@ -161,6 +161,20 @@ export function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Map Section */}
+      <section className='h-[400px] w-full border-t border-slate-200'>
+        <iframe
+          src='https://maps.google.com/maps?width=100%25&height=600&hl=en&q=MSR-9%20building,%20Street%20No.%207,%20Madhapur,%20Hyderabad+(Fynryx%20Tech%20Private%20Limited)&t=&z=14&ie=UTF8&iwloc=B&output=embed'
+          width='100%'
+          height='100%'
+          style={{ border: 0 }}
+          allowFullScreen={false}
+          loading='lazy'
+          referrerPolicy='no-referrer-when-downgrade'
+          title='Fynryx Office Location'
+        ></iframe>
+      </section>
     </>
   )
 }

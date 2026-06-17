@@ -4,7 +4,7 @@ import type { JobOpening } from '../data/careers'
 
 // The public CSV export link from Zoho Sheets
 // Set this in your .env file as VITE_ZOHO_SHEET_CSV_URL
-const ZOHO_SHEET_CSV_URL = import.meta.env.VITE_ZOHO_SHEET_CSV_URL || ''
+const ZOHO_SHEET_CSV_URL = import.meta.env.VITE_ZOHO_SHEET_CSV_URL || 'https://sheet.zohopublic.in/sheet/publishedsheet/e258f7166c76213f8fc943c18273a64d26ee8c8fa3188856df1ef584bc1dd1bb?type=grid&download=csv'
 
 export async function fetchJobOpenings(): Promise<JobOpening[]> {
   if (!ZOHO_SHEET_CSV_URL) {
