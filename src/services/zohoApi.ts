@@ -25,9 +25,9 @@ export async function fetchJobOpenings(): Promise<JobOpening[]> {
       } catch {
         // Fallback to original URL if URL parsing fails
       }
-    } else if (!import.meta.env.DEV && ZOHO_SHEET_CSV_URL.includes('sheet.zohopublic.in')) {
-      // In production, Zoho blocks CORS, so use a public CORS proxy
-      fetchUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(ZOHO_SHEET_CSV_URL)}`
+    } else if (!import.meta.env.DEV) {
+      // In production (Vercel), use the serverless function we created at /api/zoho
+      fetchUrl = '/api/zoho'
     }
 
     const response = await fetch(fetchUrl)
