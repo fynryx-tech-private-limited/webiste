@@ -13,6 +13,8 @@ export function AboutPage() {
       <SEO 
         title="About Us - Fynryx" 
         description="Learn about Fynryx, a values-driven technology agency dedicated to empowering businesses with cutting-edge IT solutions." 
+        keywords="about Fynryx, tech company profile, IT solutions provider, values-driven technology agency, custom software development"
+        canonical="https://fynryx.com/about"
       />
       <PageHero
         title="About Us"

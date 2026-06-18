@@ -16,6 +16,8 @@ export function HomePage() {
       <SEO 
         title="Fynryx – Design. Innovate. Transform." 
         description="Fynryx provides top-tier IT services including web development, mobile apps, cloud computing, and managed IT support to transform your business." 
+        keywords="IT services, web development, cloud computing, software solutions, managed IT support, mobile apps, Fynryx"
+        canonical="https://fynryx.com/"
       />
       <ShowcaseSection />
       {/* <HeroCarousel /> */}

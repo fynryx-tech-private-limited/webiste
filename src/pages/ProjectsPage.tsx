@@ -10,6 +10,8 @@ export function ProjectsPage() {
       <SEO 
         title="Our Projects - Fynryx" 
         description="Explore Fynryx's portfolio of successful IT implementations and custom software solutions across diverse industries." 
+        keywords="IT portfolio, software case studies, web development projects, successful IT implementations, technology solutions portfolio"
+        canonical="https://fynryx.com/projects"
       />
       <PageHero
     

@@ -16,28 +16,23 @@ export function ContactPage() {
     const form = e.currentTarget
     const formData = new FormData(form)
     
-    // Dynamically constructing these to avoid triggering static signatures
-    const w3f = 'web3forms'
-    const endpoint = `https://api.${w3f}.com/submit`
-    const key = '5284b0a6-0821-4270-a22a-707c8081c0bd'
-  
+    const endpoint = 'https://flow.zoho.in/60074681705/flow/webhook/incoming?zapikey=1001.90d2e681976064465dada2dfd5160ea9.e1213ce1263a762cfd6ebc8428f798c1&isdebug=false'
     
-    formData.append('access_key', key)
-    formData.append('replyto', 'email')
-
     try {
-      const resp = await fetch(endpoint, {
+      // Using 'no-cors' mode because Zoho Flow webhooks do not support CORS for browsers.
+      // We send the standard FormData directly.
+      await fetch(endpoint, {
         method: 'POST',
+        mode: 'no-cors',
         body: formData,
       })
-      const result = await resp.json()
-      if (result.success) {
-        setSubmitted(true)
-      } else {
-        setError(result.message || 'Submission failed')
-      }
+      
+      // With 'no-cors', the browser hides the response status.
+      // If it reaches here without throwing an exception, the request was sent successfully.
+      setSubmitted(true)
+      form.reset()
     } catch {
-      setError('Network error')
+      setError('Network error. Please check your connection.')
     } finally {
       setLoading(false)
     }
@@ -48,6 +43,8 @@ export function ContactPage() {
       <SEO 
         title="Contact Us - Fynryx" 
         description="Get in touch with Fynryx for your IT service needs. We are here to answer your questions 24/7." 
+        keywords="contact Fynryx, IT support contact, hire software developers, IT service inquiries, contact tech agency"
+        canonical="https://fynryx.com/contact"
       />
       <PageHero title='Contact Us' subtitle='Drop us a line! We are here to answer your questions 24/7.' />
       <section className='py-12 md:py-20'>
@@ -163,27 +160,21 @@ export function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className='h-[400px] w-full border-t border-slate-200'>
-        {/* <iframe
-          src='https://maps.google.com/maps?width=100%25&height=600&hl=en&q=MSR-9%20building,%20Street%20No.%207,%20Madhapur,%20Hyderabad+(Fynryx%20Tech%20Private%20Limited)&t=&z=14&ie=UTF8&iwloc=B&output=embed'
-          width='100%'
-          height='100%'
-          style={{ border: 0 }}
-          allowFullScreen={false}
-          loading='lazy'
-          referrerPolicy='no-referrer-when-downgrade'
-          title='Fynryx Office Location'
-        ></iframe> */}
-        <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7612.231409852687!2d78.3870747!3d17.454175299999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9100223fb8bf%3A0xc30547e01d99613e!2sFynryx%20Tech%20Private%20Limited!5e0!3m2!1sen!2sin!4v1781698667779!5m2!1sen!2sin"
-  width="100%"
-  height="100%"
-  style={{ border: 0 }}
-  allowFullScreen={false}
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-/>
-
+      <section className='pb-12 md:pb-20'>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='h-[400px] w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm'>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7612.231409852687!2d78.3870747!3d17.454175299999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9100223fb8bf%3A0xc30547e01d99613e!2sFynryx%20Tech%20Private%20Limited!5e0!3m2!1sen!2sin!4v1781698667779!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Fynryx Office Location"
+            />
+          </div>
+        </div>
       </section>
     </>
   )

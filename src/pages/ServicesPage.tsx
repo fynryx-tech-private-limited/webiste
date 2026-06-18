@@ -33,6 +33,8 @@ export function ServicesPage() {
       <SEO 
         title="Our IT Services - Fynryx" 
         description="Comprehensive IT solutions including web development, mobile apps, and cloud computing designed to help your business thrive in the digital age." 
+        keywords="IT consulting, custom software development, managed IT, cyber security, cloud computing, web design, mobile app development"
+        canonical="https://fynryx.com/services"
       />
       <PageHero
         title="Our Services"

@@ -33,6 +33,8 @@ export function CareersPage() {
       <SEO 
         title="Careers at Fynryx" 
         description="Join our dynamic team and help us build the future of technology solutions. View our open positions and life at Fynryx." 
+        keywords="IT jobs, tech careers, software engineering jobs, work at Fynryx, tech company jobs, developer careers"
+        canonical="https://fynryx.com/careers"
       />
       <PageHero
         title="Careers at Fynryx"

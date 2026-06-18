@@ -8,6 +8,8 @@ export function CoursesPage() {
       <SEO 
         title="Training & Courses - Fynryx" 
         description="Advance your career with industry-led training programs in Python, React, Data Science, and Cloud Technologies by Fynryx." 
+        keywords="IT training, software development courses, coding bootcamp, tech education, learn Python, React training, Data Science courses"
+        canonical="https://fynryx.com/courses"
       />
       <PageHero
         title="Courses"

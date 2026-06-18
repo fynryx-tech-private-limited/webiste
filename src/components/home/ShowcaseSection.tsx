@@ -146,8 +146,8 @@ export function ShowcaseSection() {
       <ShowcaseCanvas mouse={mouse} />
 
       {/* Foreground Content Layer */}
-      <div className="relative z-20 flex flex-1 w-full max-w-5xl flex-col items-center justify-between px-4 text-center py-4 sm:py-8">
-        <div className="flex flex-col items-center gap-2 mt-4 sm:mt-8 pointer-events-none">
+      <div className="relative z-20 flex flex-1 w-full max-w-5xl flex-col items-center justify-between px-4 text-center py-2 sm:py-8">
+        <div className="flex flex-col items-center gap-1 sm:gap-2 mt-2 sm:mt-8 pointer-events-none">
           {/* Line 1 - Unified Glossy Continuous Flow Heading */}
           <h1
             className="flex flex-wrap justify-center text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-sans text-transparent bg-clip-text bg-[linear-gradient(to_right,#14b8a6_0%,#5eead4_20%,#e5e7eb_40%,#ffffff_50%,#e5e7eb_60%,#5eead4_80%,#14b8a6_100%)] animate-text-shimmer pb-2"
@@ -159,7 +159,7 @@ export function ShowcaseSection() {
             variants={wordContainerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] font-semibold sm:text-xs md:text-xs tracking-[0.2em] uppercase text-center text-white/80"
+            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 sm:gap-y-2 text-[10px] font-semibold sm:text-xs md:text-xs tracking-[0.2em] uppercase text-center text-white/80"
           >
             {line2Words.map((word, idx) => (
               <motion.span
@@ -173,7 +173,7 @@ export function ShowcaseSection() {
         </div>
 
         {/* Rotating Middle Headings */}
-        <div className="flex-none sm:flex-1 flex flex-col items-center justify-center min-h-[140px] sm:min-h-[160px] mt-8 mb-4 sm:my-10 pointer-events-none">
+        <div className="flex-none sm:flex-1 flex flex-col items-center justify-center min-h-[110px] sm:min-h-[160px] mt-6 mb-2 sm:my-10 pointer-events-none">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentHeadingIndex}
@@ -181,7 +181,7 @@ export function ShowcaseSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, filter: 'blur(8px)', y: -15 }}
               transition={{ duration: 0.35 }}
-              className="flex flex-col items-center gap-3 sm:gap-4"
+              className="flex flex-col items-center gap-2 sm:gap-4"
             >
               <motion.h2
                 variants={{
@@ -228,7 +228,7 @@ export function ShowcaseSection() {
           variants={ctaVariants}
           initial="hidden"
           animate="visible"
-          className="mt-4 sm:mt-auto mb-4 md:mb-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
+          className="mt-2 sm:mt-auto mb-2 md:mb-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-6"
         >
           <MagneticButton to="/contact" variant="primary">
             <span>Start Your Project</span>
