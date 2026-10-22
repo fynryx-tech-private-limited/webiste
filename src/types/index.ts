@@ -46,6 +46,12 @@ export interface Project {
   title: string
   category: string
   image: string
+  summary: string
+  description: string[]
+  features: string[]
+  technologies: string[]
+  client?: string
+  year?: string
 }
 
 export interface Testimonial {

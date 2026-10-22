@@ -7,6 +7,7 @@ const CoursesPage = lazy(() => import('../pages/CoursesPage').then(m => ({ defau
 const AboutPage = lazy(() => import('../pages/AboutPage').then(m => ({ default: m.AboutPage })))
 const ServicesPage = lazy(() => import('../pages/ServicesPage').then(m => ({ default: m.ServicesPage })))
 const ProjectsPage = lazy(() => import('../pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })))
+const ProjectDetailsPage = lazy(() => import('../pages/ProjectDetailsPage').then(m => ({ default: m.ProjectDetailsPage })))
 const ContactPage = lazy(() => import('../pages/ContactPage').then(m => ({ default: m.ContactPage })))
 const LegalPage = lazy(() => import('../pages/LegalPage').then(m => ({ default: m.LegalPage })))
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })))
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: 'about', element: <AboutPage /> },
       { path: 'services', element: <ServicesPage /> },
       { path: 'projects', element: <ProjectsPage /> },
+      { path: 'projects/:projectId', element: <ProjectDetailsPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: 'careers', element: <CareersPage /> },
       { path: 'careers/:jobId', element: <JobDetailsPage /> },
