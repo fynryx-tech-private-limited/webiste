@@ -45,7 +45,7 @@ export const projects: Project[] = [
       'Clear product detail and CTA flows',
       'Scalable structure for future catalog growth',
     ],
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Ecommerce APIs'],
+    technologies: [],
   },
   {
     id: 'crm-system',
@@ -69,7 +69,7 @@ export const projects: Project[] = [
       'Team collaboration and role access',
       'Dashboards for conversion and occupancy insights',
     ],
-    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'REST API'],
+    technologies: [],
   },
 ]
 
