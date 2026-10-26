@@ -1,9 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { getProjectById, projects } from '../data/projects'
 import { PageHero } from '../components/ui/PageHero'
-import { Button } from '../components/ui/Button'
 import { ProjectCard } from '../components/ui/ProjectCard'
 
 export function ProjectDetailsPage() {
