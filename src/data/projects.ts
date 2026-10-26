@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 'livraah-living',
     title: 'Livraah Living',
     category: 'PG Management / SaaS',
-    image: '/LIVRAA.png',
+    image: '/public/Livraah.png',
     client: 'Livraah Living',
     year: '2026',
     summary:
